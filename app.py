@@ -10,13 +10,13 @@ from PIL import Image
 import torch
 from flask import Flask, render_template, request, redirect
 
-app = Flask(__name__)
+
 # parser = argparse.ArgumentParser(description="Flask app exposing yolov5 models")
 # parser.add_argument("--port", default=5000, type=int, help="port number")
 # args = parser.parse_args()
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)  # force_reload = recache latest code
 model.eval()  # debug=True causes Restarting with stat
-
+app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def predict():
